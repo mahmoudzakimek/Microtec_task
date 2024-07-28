@@ -1,0 +1,191 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light d-block fixed-top bg-white p-0 m-0 shadow-navbar"
+>
+  <div class="container-fluid m-0 p-0">
+    <div class="d-flex justify-content-center align-content-center">
+      <img
+        class="logo"
+        src="https://imgv3.fotor.com/images/homepage-feature-card/Text-PNG.jpg"
+        alt=""
+        width="30"
+        height="40"
+        srcset=""
+      />
+    </div>
+    <div class="">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"> </span>
+      </button>
+    </div>
+    <div class="collapse px-3 navbar-collapse bg-white" id="navbarNavDropdown">
+      <ul
+        class="d-flex px-3 d-sm-none navbar-nav py-2 flex-wrap justify-content-start align-items-start drops"
+      >
+        <li
+          class="w-100 d-flex flex-row justify-content-between align-items-center p-3 link-general"
+        >
+          <a
+            class="nav-link d-flex justify-content-center align-items-center link-general"
+            style="width: 120px"
+            [routerLink]="['/users']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            aria-current="page"
+          >
+            <i class="fa-solid fa-group-arrows-rotate me-2"></i> General
+            settings
+          </a>
+
+          <div class="d-flex justify-content-center align-items-center gap-2">
+            <p-dropdown
+              placeholder="Company 4"
+              optionLabel="name"
+              [disabled]="true"
+            />
+
+            <p-dropdown
+              placeholder="Default Branch"
+              optionLabel="name"
+              [disabled]="true"
+            />
+          </div>
+        </li>
+
+        <div
+          class="w-100 d-flex justify-content-end align-items-center py-2 px-2 pe-2 notification-icons"
+        >
+          <span class="px-2 pe-3 position-relative">
+            <i class="fa-regular fa-bell"></i>
+            <span
+              class="position-absolute top-0 start-80 translate-middle badge rounded-pill"
+            >
+              9
+            </span>
+          </span>
+          <span class="px-2 pe-3 position-relative">
+            <i class="fa-regular fa-comment"></i>
+            <span
+              class="position-absolute top-0 start-80 translate-middle badge rounded-pill"
+            >
+              9
+            </span>
+          </span>
+
+          <span class="px-2 pe-3">
+            <i class="fa fa-gear"></i>
+          </span>
+          <span class="px-2 pe-3">
+            <i class="fa fa-gear"></i>
+          </span>
+          <span class="px-2 pe-3">
+            <i class="fa-regular fa-star"></i>
+          </span>
+          <span class="px-2 pe-3">
+            <i class="fa-brands fa-nfc-symbol"></i>
+          </span>
+
+          <img
+            class="user_image"
+            src="https://img.freepik.com/premium-vector/traditional-arabic-man-head-icon-vector-avatar_55610-6301.jpg"
+            alt=""
+          />
+        </div>
+      </ul>
+      <ul class="d-sm-flex d-none navbar-nav me-auto routes">
+        <li class="nav-item route">
+          <a
+            class="nav-link"
+            [routerLink]="['/users']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            aria-current="page"
+          >
+            <i class="fa-solid fa-group-arrows-rotate"></i> General setting
+          </a>
+        </li>
+        <!-- <li class="nav-item route">
+          <a class="nav-link active" aria-current="page" href="#">
+            Domain Space Here
+          </a>
+        </li>
+        <li class="nav-item route">
+          <a class="nav-link active" aria-current="page" href="#">
+            Action Taken Here
+          </a>
+        </li> -->
+      </ul>
+      <ul
+        class="d-sm-flex d-none navbar-nav py-2 d-flex justify-content-center align-items-start drops"
+      >
+        <li class="nav-item p-3">
+          <p-dropdown
+            placeholder="Company 4"
+            optionLabel="name"
+            [disabled]="true"
+          />
+        </li>
+        <li class="nav-item p-3">
+          <p-dropdown
+            placeholder="Default Branch"
+            optionLabel="name"
+            [disabled]="true"
+          />
+        </li>
+      </ul>
+
+      <div
+        class="d-sm-flex d-none justify-content-start py-2 px-2 pe-2 notification-icons"
+      >
+        <span class="px-2 pe-3 position-relative">
+          <i class="fa-regular fa-bell"></i>
+          <span
+            class="position-absolute top-0 start-80 translate-middle bg-danger badge rounded-pill"
+          >
+            9
+          </span>
+        </span>
+        <span class="px-2 pe-3 position-relative">
+          <i class="fa-regular fa-comment"></i>
+          <span
+            class="position-absolute top-0 start-80 translate-middle badge bg-danger rounded-pill"
+          >
+            9
+          </span>
+        </span>
+
+        <span class="px-2 pe-3">
+          <i class="fa fa-gear"></i>
+        </span>
+        <span class="px-2 pe-3">
+          <i class="fa fa-gear"></i>
+        </span>
+        <span class="px-2 pe-3">
+          <i class="fa-regular fa-star"></i>
+        </span>
+        <span class="px-2 pe-3">
+          <i class="fa-brands fa-nfc-symbol"></i>
+        </span>
+      </div>
+      <div
+        class="d-sm-flex d-none pt-2 px-4 justify-content-start align-items-center"
+      >
+        <img
+          class="user_image"
+          src="https://img.freepik.com/premium-vector/traditional-arabic-man-head-icon-vector-avatar_55610-6301.jpg"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="fixed-header-placeholder"></div>
+
+<app-bread-cramb> </app-bread-cramb>

@@ -1,0 +1,22 @@
+.btn-add{
+    background-color:#1a8eae;
+}
+::ng-deep .p-dropdown{
+    width: 100%;
+
+}
+::ng-deep .p-dropdown ol, 
+::ng-deep .p-dropdown ul {
+  padding-left: 0rem !important;
+}
+
+::ng-deep   .p-datatable-tbody tr:nth-child(odd) {
+    background-color: white;
+  }
+
+  ::ng-deep   .p-datatable-tbody tr:nth-child(even) {
+    background-color: #f9fafb;
+  }
+
+
+

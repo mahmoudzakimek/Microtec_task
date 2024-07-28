@@ -1,0 +1,285 @@
+<div class="container-fluid pe-5">
+  <div class="d-flex justify-content-end gap-5 align-items-center pt-4">
+    <button
+      type="button"
+      class="btn btn-outline-danger px-5"
+      (click)="discard()"
+    >
+      Discard
+    </button>
+    <button
+      class="btn btn-add text-white px-5"
+      [disabled]="form.invalid || bankArray.invalid"
+      (click)="submitForm()"
+    >
+      <i class="fa-regular fa-floppy-disk pe-2"></i>
+      Save
+    </button>
+  </div>
+  <div class="row mb-4" [formGroup]="form">
+    <div class="d-flex flex-column gap-2 col-6 mt-3">
+      <label class="fw-bold" for="name">Name</label>
+      <input
+        pInputText
+        id="name"
+        formControlName="name"
+        aria-describedby="name-help"
+        [ngClass]="{
+          'is-invalid': form.get('name')?.touched && form.get('name')?.invalid
+        }"
+      />
+
+      @if( form.get('name')?.touched && form.get('name')?.invalid){
+      <small id="name-help" class="invalid-feedback">
+        @if(form.get('name')?.errors?.['required']){
+
+        <span>name is required.</span>
+        }@else if(form.get('name')?.errors?.['minlength']){
+
+        <span>name must be at least 1 character long.</span>
+        }
+      </small>
+      }
+    </div>
+    <div class="d-flex flex-column gap-2 col-6 mt-3">
+      <label class="fw-bold" for="code">Code</label>
+      <input
+        type="number"
+        pInputText
+        id="code"
+        min="0"
+        formControlName="code"
+        aria-describedby="code-help"
+        [ngClass]="{
+          'is-invalid': form.get('code')?.touched && form.get('code')?.invalid
+        }"
+      />
+      @if(form.get('code')?.touched && form.get('code')?.invalid){
+      <small id="code-help" class="invalid-feedback">
+        @if(form.get('code')?.errors?.['required']){
+
+        <span>code is required.</span>
+        }@else if(form.get('code')?.errors?.['minlength']){
+
+        <span>code must be at least 1 character long.</span>
+        }
+      </small>
+
+      }
+    </div>
+    <div class="d-flex flex-column gap-2 col-6 mt-3">
+      <label class="fw-bold" for="startName">Start Name</label>
+      <input
+        type="text"
+        pInputText
+        id="startName"
+        min="0"
+        formControlName="startName"
+        aria-describedby="startName-help"
+        [ngClass]="{
+          'is-invalid':
+            form.get('startName')?.touched && form.get('startName')?.invalid
+        }"
+      />
+      @if(form.get('startName')?.touched && form.get('startName')?.invalid){
+      <small id="startName-help" class="invalid-feedback">
+        @if(form.get('startName')?.errors?.['required']){
+
+        <span>startName is required.</span>
+        }@else if(form.get('startName')?.errors?.['minlength']){
+
+        <span>startName must be at least 1 character long.</span>
+        }
+      </small>
+
+      }
+    </div>
+
+    <div class="d-flex flex-column gap-2 col-6 mt-3">
+      <label class="fw-bold" for="address">Address</label>
+      <input
+        pInputText
+        id="address"
+        formControlName="address"
+        aria-describedby="address-help"
+        [ngClass]="{
+          'is-invalid':
+            form.get('address')?.touched && form.get('address')?.invalid
+        }"
+      />
+
+      @if( form.get('address')?.touched && form.get('address')?.invalid){
+
+      <small id="address-help" class="invalid-feedback">
+        @if(form.get('address')?.errors?.['required']){
+
+        <span>address is required.</span>
+        }@else if(form.get('address')?.errors?.['minlength']){
+
+        <span>address must be at least 5 character long.</span>
+        }
+      </small>
+      }
+    </div>
+  </div>
+  <!-- form array -->
+  <div class="d-flex justify-content-end align-items-center mb-3">
+    <button
+      type="button"
+      class="btn btn-outline-info px-5"
+      (click)="addBankRow()"
+    >
+      Add New Line
+    </button>
+  </div>
+
+  <p-table
+    [value]="bankArray.controls"
+    responsiveLayout="scroll"
+    editable="true"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Account Number</th>
+        <th>GL Account Code</th>
+        <th>GL Account Name</th>
+        <th>Branch</th>
+        <th>IBAN</th>
+        <th>Currency</th>
+        <th>Current Balance</th>
+        <th>User Permission</th>
+        <th>Opening Balance</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-row let-i="rowIndex">
+      <tr [formGroup]="row">
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="number" formControlName="accountNumber" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ row.get("accountNumber")?.value }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-dropdown
+                [options]="GlAcountList"
+                appendTo="body"
+                optionLabel="name"
+                formControlName="glAccountCode"
+                placeholder="Select a GL Account Code"
+                [style]="{ width: '100%' }"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ row.get("glAccountCode")?.value.name }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" formControlName="glAcountName" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ row.get("glAcountName")?.value }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText formControlName="branchr" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ row.get("branchr")?.value }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="number" formControlName="iban" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ row.get("iban")?.value }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-dropdown
+                [options]="currencyList"
+                appendTo="body"
+                optionLabel="name"
+                formControlName="currency"
+                placeholder="Select a currency"
+                [style]="{ width: '100%' }"
+              />
+            </ng-template>
+
+            <ng-template pTemplate="output">
+              {{ row.get("currency")?.value.name }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="number"
+                formControlName="currentBalance"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ row.get("currentBalance")?.value | number : "2.2-2" }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-dropdown
+                [options]="permissionList"
+                appendTo="body"
+                optionLabel="name"
+                formControlName="userPermission"
+                placeholder="Select a User Permission"
+                [style]="{ width: '100%' }"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ row.get("userPermission")?.value.name }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText formControlName="openingBalance" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ row.get("openingBalance")?.value }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-trash"
+            (click)="removeBankRow(i)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <!-- form array -->
+</div>

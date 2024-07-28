@@ -1,0 +1,73 @@
+<p-toast />
+
+<p-table
+  #dt1
+  [value]="filteredUsers()"
+  [globalFilterFields]="['code', 'name', 'startName']"
+  selectionMode="single"
+  dataKey="id"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [rows]="10"
+  [paginator]="true"
+  stateStorage="session"
+  stateKey="statedemo-session"
+>
+  <ng-template pTemplate="caption">
+    <div class="d-flex align-items-center justify-content-between bg-white">
+      <div class="">
+        <p-iconField iconPosition="right">
+          <input
+            pInputText
+            type="text"
+            placeholder=" Search With Name"
+            [(ngModel)]="searchTerm"
+            (input)="onSearchChange($event)"
+          />
+          <p-inputIcon>
+            <i class="pi pi-search"></i>
+          </p-inputIcon>
+        </p-iconField>
+      </div>
+      <button class="btn btn-add text-white px-5" routerLink="/manage-user">
+        <i class="fa fa-circle-plus px-2"></i> Add New
+      </button>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="code" style="width: 20%">
+        Code <p-sortIcon field="code"></p-sortIcon>
+      </th>
+      <th pSortableColumn="name" style="width: 20%">
+        Name <p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th pSortableColumn="startName" style="width: 20%">
+        Start Name <p-sortIcon field="startName"></p-sortIcon>
+      </th>
+
+      <th style="width: 20%">Actions</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-user>
+    <tr>
+      <td>{{ user.code }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.startName }}</td>
+      <td>
+        <div class="px-3">
+          <button
+            class="btn btn-info mx-3"
+            [routerLink]="['/manage-user', user.id]"
+          >
+            <i class="fas fa-edit text-white" aria-hidden="true"></i>
+          </button>
+          <button class="btn btn-danger mx-3" (click)="onDeleteUser(user.id)">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
